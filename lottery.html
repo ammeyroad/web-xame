@@ -1,0 +1,1709 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple starter template Vue JS 3 Tailwind and any other tools"
+    />
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+
+    <title>Vue Tailwind Template</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flowbite@1.5.3/dist/flowbite.min.cssx"
+    />
+  </head>
+  <script src="https://unpkg.com/flowbite@1.5.3/dist/flowbite.jsx"></script>
+
+  <style>
+    .circle {
+      display: block;
+      background: black;
+      border-radius: 50%;
+      height: 300px;
+      width: 300px;
+      margin: 0;
+      background: radial-gradient(circle at 100px 100px, #5cabff, #000);
+    }
+    .b-tab {
+      display: none;
+    }
+
+    .b-tab.active {
+      display: block;
+    }
+
+    .b-nav-tab {
+    }
+
+    .b-nav-tab.active {
+      color: #fff;
+    }
+  </style>
+  <body class="bg-base-300 space-y-8">
+    <div class="max-w-screen-md mx-auto space-y-8">
+      <div>
+        <a href="#orange" data-tab="orange" class="b-nav-tab active btn">
+          Ticket
+        </a>
+        <a href="#green" data-tab="green" class="b-nav-tab btn"> Purchase </a>
+
+        <div id="orange" class="b-tab active py-2">
+          <div class="space-y-5 bg-base-100 p-5 rounded-xl">
+            <div class="grid grid-cols-4 bg-base-100 gap- items-end gap-4">
+              <div>
+                Quantity
+                <input
+                  type="text"
+                  placeholder="2"
+                  class="input input-lg bg-base-300 w-full w-full"
+                />
+              </div>
+              <div>
+                Ticket Cost
+                <input
+                  type="text"
+                  placeholder="2.000.000"
+                  class="input input-lg bg-base-300 w-full w-full"
+                />
+              </div>
+              <div class="">
+                Total Cost
+                <input
+                  type="text"
+                  placeholder="4.000.000"
+                  class="input input-lg bg-base-300 w-full w-full"
+                />
+              </div>
+              <div class="content-bottom">
+                <a href="#my-modal-2" class="btn btn-lg w-full btn-warning">
+                  BUY TICKET
+                </a>
+              </div>
+            </div>
+            <p>
+              Purchase raffle tickets. A random ticket will be drawn at the end
+              of the raffle. The ticket owner will win the pot, which equals
+              95.00% of all purchased tickets value. The more tickets you
+              purchase, the more chances you have to win.
+            </p>
+
+            <div class="modal" id="my-modal-2">
+              <div class="modal-box">
+                <div class="space-y-2">
+                  <hr class="border-base-300" />
+                  <div class="bg-base-200 p-4 rounded-xl">
+                    Pick Number
+                    <div class="flex flex-wrap gap-1">
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        1
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        2
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        3
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        4
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        5
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        6
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        7
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        8
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        9
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        10
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        11
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        12
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        13
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        14
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        15
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        16
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        17
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        18
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        19
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        20
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        21
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        22
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        23
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        24
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        25
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        26
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        27
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        28
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        29
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        30
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        31
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        32
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        33
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        34
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        35
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        36
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        37
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        38
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        39
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        40
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        41
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        42
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        43
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        44
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        45
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        46
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        47
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        48
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          bg-gradient-to-br
+                          from-base-100
+                          to-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          hover:bg-gradient-to-br
+                          hover:from-pink-500
+                          hover:to-pink-600
+                        "
+                      >
+                        49
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        50
+                      </div>
+                    </div>
+                  </div>
+                  <hr class="border-base-200" />
+                  <div class="bg-base-200 p-4 rounded-xl">
+                    Auto Generate
+                    <div class="flex flex-wrap gap-1">
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        31
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg
+                          hover:shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        22
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        13
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        42
+                      </div>
+                      <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-black
+                          border border-base-300
+                          shadow-lg shadow-black/50
+                          bg-gradient-to-br
+                          from-pink-500
+                          to-pink-600
+                        "
+                      >
+                        15
+                      </div>
+                    </div>
+                  </div>
+
+                  <a href="#" class="btn btn-wide btn-lg">submit</a>
+                  <a
+                    href="#"
+                    class="
+                      btn btn-sm btn-circle
+                      absolute
+                      btn-warning
+                      right-2
+                      top-2
+                    "
+                    >✕</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+         </div>
+        <div id="green" class="b-tab py-2">
+          <div class="space-y-5 bg-base-100 p-5 rounded-xl">
+            <div class="overflow-x-auto">
+              <table class="table w-full">
+                <!-- head -->
+                <thead>
+                  <tr>
+                    <th>ROUND</th>
+                    <th>PRIZE</th>
+                    <th>NUMBER</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- row 1 -->
+                  <tr>
+                    <th>4</th>
+                    <td>
+                      <p class="text-2xl font-bold">$1.232.422</p>
+                    </td>
+                    <td>
+                      <div class="flex flex-wrap gap-1">
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-pink-500
+                            to-pink-600
+                          "
+                        >
+                          31
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-yellow-500
+                            to-yellow-600
+                          "
+                        >
+                          22
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-green-500
+                            to-green-600
+                          "
+                        >
+                          13
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-red-500
+                            to-red-600
+                          "
+                        >
+                          42
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-blue-500
+                            to-blue-600
+                          "
+                        >
+                          15
+                        </div>
+                      </div>
+                    </td>
+                    <td>PROGRESS</td>
+                  </tr>
+                  <!-- row 2 -->
+                  <tr>
+                    <th>3</th>
+                    <td>
+                      <p class="text-2xl font-bold text-warning">$1.232.422</p>
+                    </td>
+                    <td>
+                      <div class="flex flex-wrap gap-1">
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-yellow-500
+                            to-yellow-600
+                          "
+                        >
+                          31
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-yellow-500
+                            to-yellow-600
+                          "
+                        >
+                          22
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-yellow-500
+                            to-yellow-600
+                          "
+                        >
+                          13
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-yellow-500
+                            to-yellow-600
+                          "
+                        >
+                          42
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-yellow-500
+                            to-yellow-600
+                          "
+                        >
+                          15
+                        </div>
+                      </div>
+                    </td>
+                    <td class="text-warning">WINNER</td>
+                  </tr>
+                  <!-- row 3 -->
+                  <tr>
+                    <th>1</th>
+                    <td>
+                      <p class="text-2xl font-bold">$1.312.124</p>
+                    </td>
+                    <td>
+                      <div class="flex flex-wrap gap-1">
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-pink-500
+                            to-pink-600
+                          "
+                        >
+                          31
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-yellow-500
+                            to-yellow-600
+                          "
+                        >
+                          22
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-green-500
+                            to-green-600
+                          "
+                        >
+                          13
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-red-500
+                            to-red-600
+                          "
+                        >
+                          42
+                        </div>
+                        <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-black
+                            border border-base-300
+                            shadow-lg shadow-black/50
+                            bg-gradient-to-br
+                            from-blue-500
+                            to-blue-600
+                          "
+                        >
+                          15
+                        </div>
+                      </div>
+                    </td>
+                    <td>LOSE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-5 bg-base-100 p-5 rounded-xl">
+        History
+        <div class="overflow-x-auto">
+          <table class="table w-full">
+            <!-- head -->
+            <thead>
+              <tr>
+                <th>ROUND</th>
+                <th>PRIZE</th>
+                <th>NUMBER</th>
+                <th>WINNER</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- row 1 -->
+              <tr>
+                <th>1</th>
+                <td>
+                  <p class="text-2xl font-bold text-secondary">$1.232.422</p>
+                </td>
+                <td>
+                  <div class="flex flex-wrap gap-1">
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-pink-500
+                        to-pink-600
+                      "
+                    >
+                      31
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-yellow-500
+                        to-yellow-600
+                      "
+                    >
+                      22
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-green-500
+                        to-green-600
+                      "
+                    >
+                      13
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-red-500
+                        to-red-600
+                      "
+                    >
+                      42
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-blue-500
+                        to-blue-600
+                      "
+                    >
+                      15
+                    </div>
+                  </div>
+                </td>
+                <td>Ammeyroad</td>
+              </tr>
+              <!-- row 2 -->
+              <tr>
+                <th>2</th>
+                <td>
+                  <p class="text-2xl font-bold text-secondary">$1.213.115</p>
+                </td>
+                <td>
+                  <div class="flex flex-wrap gap-1">
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-pink-500
+                        to-pink-600
+                      "
+                    >
+                      31
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-yellow-500
+                        to-yellow-600
+                      "
+                    >
+                      22
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-green-500
+                        to-green-600
+                      "
+                    >
+                      13
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-red-500
+                        to-red-600
+                      "
+                    >
+                      42
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-blue-500
+                        to-blue-600
+                      "
+                    >
+                      15
+                    </div>
+                  </div>
+                </td>
+                <td>-</td>
+              </tr>
+              <!-- row 3 -->
+              <tr>
+                <th>3</th>
+                <td>
+                  <p class="text-2xl font-bold text-secondary">$1.312.124</p>
+                </td>
+                <td>
+                  <div class="flex flex-wrap gap-1">
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-pink-500
+                        to-pink-600
+                      "
+                    >
+                      31
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-yellow-500
+                        to-yellow-600
+                      "
+                    >
+                      22
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-green-500
+                        to-green-600
+                      "
+                    >
+                      13
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-red-500
+                        to-red-600
+                      "
+                    >
+                      42
+                    </div>
+                    <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-black
+                        border border-base-300
+                        shadow-lg shadow-black/50
+                        bg-gradient-to-br
+                        from-blue-500
+                        to-blue-600
+                      "
+                    >
+                      15
+                    </div>
+                  </div>
+                </td>
+                <td>ANDYSUR</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <!-- head -->
+          <thead>
+            <tr>
+              <th class="text-left">Match</th>
+              <th class="text-center">NUMBER</th>
+              <th class="text-right">PRIZE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- row 1 -->
+            <tr>
+             
+              <td>
+                <p class="font-bold text-warning">5 Numbers Jackpot Ball</p>
+              </td>
+              <td class="">
+                <div class="mx-auto text-center bg-base-300 w-max p-3 rounded-full">
+                            <div
+                            class="
+                              btn btn-ghost btn-circle
+                              text-warning bg-warning
+                            "
+                          >
+                            x
+                          </div>
+                          <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-warning bg-warning
+                          "
+                        >
+                          x
+                        </div>
+                        <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-warning bg-warning
+                        "
+                      >
+                        x
+                      </div>
+                      <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-warning bg-warning
+                      "
+                    >
+                      x
+                    </div>
+                    <div
+                    class="
+                      btn btn-ghost btn-circle
+                      text-warning bg-warning
+                    "
+                  >
+                    x
+                  </div>
+              </td>
+              <td class="text-right font-bold text-warning">$ POT PRIZE</td>
+            </tr>
+            <!-- row 2 -->
+            <tr>
+              <td>
+                <p class="font-bold">4 Numbers Jackpot Ball</p>
+              </td>
+              <td class="">
+                <div class="mx-auto text-center bg-base-300 w-max p-3 rounded-full">
+                            <div
+                            class="
+                              btn btn-ghost btn-circle
+                              text-warning bg-warning
+                            "
+                          >
+                            x
+                          </div>
+                          <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-warning bg-warning
+                          "
+                        >
+                          x
+                        </div>
+                        <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-warning bg-warning
+                        "
+                      >
+                        x
+                      </div>
+                      <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-warning bg-warning
+                      "
+                    >
+                      x
+                    </div>
+                    <div
+                    class="
+                      btn btn-ghost btn-circle
+                      text-base-100 bg-base-100
+                    "
+                  >
+                    x
+                  </div>
+              </td>
+              <td class="text-right font-bold ">1/2 POT PRIZE</td>
+            </tr>
+             <!-- row 2 -->
+             <tr>
+              <td>
+                <p class="font-bold ">3 Numbers Jackpot Ball</p>
+              </td>
+              <td class="">
+                <div class="mx-auto text-center bg-base-300 w-max p-3 rounded-full">
+                            <div
+                            class="
+                              btn btn-ghost btn-circle
+                              text-warning bg-warning
+                            "
+                          >
+                            x
+                          </div>
+                          <div
+                          class="
+                            btn btn-ghost btn-circle
+                            text-warning bg-warning
+                          "
+                        >
+                          x
+                        </div>
+                        <div
+                        class="
+                          btn btn-ghost btn-circle
+                          text-warning bg-warning
+                        "
+                      >
+                        x
+                      </div>
+                      <div
+                      class="
+                        btn btn-ghost btn-circle
+                        text-base-100 bg-base-100
+                      "
+                    >
+                      x
+                    </div>
+                    <div
+                    class="
+                      btn btn-ghost btn-circle
+                      text-base-100 bg-base-100
+                    "
+                  >
+                    x
+                  </div>
+              </td>
+              <td class="text-right font-bold ">1/4 POT PRIZE</td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    'use strict';
+
+    function Tabs() {
+      var bindAll = function () {
+        var menuElements = document.querySelectorAll('[data-tab]');
+        for (var i = 0; i < menuElements.length; i++) {
+          menuElements[i].addEventListener('click', change, false);
+        }
+      };
+
+      var clear = function () {
+        var menuElements = document.querySelectorAll('[data-tab]');
+        for (var i = 0; i < menuElements.length; i++) {
+          menuElements[i].classList.remove('active');
+          var id = menuElements[i].getAttribute('data-tab');
+          document.getElementById(id).classList.remove('active');
+        }
+      };
+
+      var change = function (e) {
+        clear();
+        e.target.classList.add('active');
+        var id = e.currentTarget.getAttribute('data-tab');
+        document.getElementById(id).classList.add('active');
+      };
+
+      bindAll();
+    }
+
+    var connectTabs = new Tabs();
+  </script>
+</html>

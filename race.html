@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A simple starter template Vue JS 3 Tailwind and any other tools"
+    />
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+
+    <title>RACE</title>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Red+Hat+Text:400,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    ba {
+      overflow: hidden;
+    }
+    .horses {
+      margin-left: -30px;
+      margin-right: -50px;
+    }
+    .horse-gold {
+      position: relative;
+      left: 5vw;
+    }
+    .horse-white {
+      position: relative;
+      left: 3vw;
+    }
+    .horse-brown {
+      position: relative;
+      left: 0vw;
+    }
+    .animate {
+      animation: run ease-in;
+      animation-play-state: paused;
+    }
+
+    .sign {
+      position: relative;
+      top: 0%;
+      transform: translateX(-50%);
+    }
+
+    .holder-swing {
+      transform-origin: top;
+      animation: 2s;
+    }
+
+    #winner {
+      border-color: aliceblue;
+    }
+    @keyframes run {
+      100% {
+        left: 100%;
+      }
+    }
+    @keyframes swing {
+      0% {
+        transform: rotateX(90deg);
+      }
+      50% {
+        transform: rotateX(-30deg);
+      }
+      80% {
+        transform: rotateX(20deg);
+      }
+      100% {
+        transform: rotateX(0deg);
+      }
+    }
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+    .animated {
+      animation-duration: 6s;
+      animation-fill-mode: both;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes wobblex {
+      0% {
+        transform: translateX(0);
+      }
+      20% {
+        transform: translate(-8px, 2px) scale(1);
+      }
+      40% {
+        transform: translate(-2px, -8px);
+      }
+      60% {
+        transform: translate(4px, 2px) scale(1.1);
+      }
+      80% {
+        transform: translate(12px, -8px) scale(1);
+      }
+      100% {
+        transform: translate(0);
+      }
+    }
+    .wobblex {
+      animation-name: wobblex;
+    }
+
+    @keyframes spu {
+      0% {
+        transform: translateX(0);
+      }
+      10% {
+        transform: translate(-2px, 2px) scale(1.1);
+      }
+      30% {
+        transform: translate(-2px, -2px);
+      }
+      50% {
+        transform: translate(12px, 2px) scale(1);
+      }
+      70% {
+        transform: translate(2px, -8px) scale(1.1);
+      }
+      100% {
+        transform: translate(0);
+      }
+    }
+    .spu {
+      animation-name: spu;
+    }
+
+    @keyframes andy {
+      0% {
+        transform: translateX(0) scale(1.1);
+      }
+      25% {
+        transform: translate(-2px, 2px);
+      }
+      45% {
+        transform: translate(-10px, -2px);
+      }
+      65% {
+        transform: translate(2px, 2px) scale(1);
+      }
+      85% {
+        transform: translate(2px, -10px) scale(1.1);
+      }
+      100% {
+        transform: translate(0) scale(1.1);
+      }
+    }
+    .andy {
+      animation-name: andy;
+    }
+  </style>
+  <body class="bg-base-300">
+    <div
+      class="
+        max-w-screen-lg
+        mx-auto
+        rounded-x-xl
+        grid grid-cols-1
+        flex-row-reverse
+        round-xl
+        bg-base-200
+        rounded-xl
+        mx-auto
+        gap-1
+      "
+    >
+      <div class="w-full">
+        <div
+          class="
+            mx-auto
+            max-w-screen-lg
+            h-[600px]
+            grid
+            overflow-hidden
+            bg-cover bg-center
+          "
+          style="
+            background-image: url(http://localhost:3000/src/assets/a/contest-bg.jpeg);
+          "
+        >
+          <div class="inset-x-0 top-0 h-16">
+            <div
+              class="
+                bg-secondary
+                holder-swing
+                mx-auto
+                w-max
+                p-12
+                rounded-b-xl
+                shadow-black
+              "
+            >
+              <h3
+                id="winner"
+                class="sm:text-3xl text-xl font-bold text-black text-center"
+              >
+                <div>
+                  <img
+                    class="w-24 mx-auto"
+                    src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png"
+                    alt=""
+                  />
+                  CHOOSE YOUR SPACESHIP
+                </div>
+              </h3>
+            </div>
+
+            <div class="holder-sign">
+              <div class="sign" src="" alt="Sign"></div>
+            </div>
+          </div>
+          <ba class="relative">
+            <ul class="horses space-y-2 sm:mt-72 pt-12 mt-96">
+              <li class="horse">
+                <div class="horse-gold run-anim">
+                  <img
+                    class="sm:w-24 w-16 animated wobblex"
+                    src="https://cdn-icons-png.flaticon.com/512/7295/7295280.png"
+                    alt=""
+                  />
+                </div>
+              </li>
+              <li class="horse">
+                <div class="horse-white run-anim">
+                  <img
+                    class="sm:w-24 w-16 animated spu"
+                    src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png"
+                    alt=""
+                  />
+                </div>
+              </li>
+              <li class="horse">
+                <div class="horse-brown run-anim">
+                  <img
+                    class="sm:w-24 w-16 animated andy"
+                    src="https://cdn-icons-png.flaticon.com/512/7457/7457329.png"
+                    alt=""
+                  />
+                </div>
+              </li>
+            </ul>
+          </ba>
+        </div>
+      </div>
+      <div class="w-full bg-base-100 sm:flex sm:p-12 p-5 gap-4 items-center">
+        <div class="sm:w-2/5 mb-3 h-[80px] bg-base-300 rounded-xl">
+          <div class="bg-base-300 items-center rounded-lg p-1 \">
+            <div class="flex items-center justify-between space-x-1">
+              <input
+                type="text"
+                placeholder="Ammount"
+                class="input w-full bg-transparent"
+              /><svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                class="fill-white"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636z"
+                />
+              </svg>
+              <div class="btn btn-square bg-base-100">/2</div>
+              <div class="btn btn-square bg-base-100">2x</div>
+            </div>
+            <div
+              class="
+                grid
+                gap-1
+                grid-cols-6
+                rounded-lg
+                bg-base-300
+                text-center
+                mt-2
+              "
+            >
+              <div class="px-2 text-sm py-2 bg-base-200/50 my-1">+10</div>
+              <div class="px-2 text-sm py-2 bg-base-200/50 my-1">+50</div>
+              <div class="px-2 text-sm py-2 bg-base-200/50 my-1">+100</div>
+              <div class="px-2 text-sm py-2 bg-base-200/50 my-1">+250</div>
+              <div class="px-2 text-sm py-2 bg-base-200/50 my-1">+500</div>
+              <div class="px-2 text-sm py-2 bg-base-200/50 my-1">$</div>
+            </div>
+          </div>
+        </div>
+        <div class="sm:w-2/5 mb-3 flex gap-2 h-[80px]">
+          <div
+            class="
+              text-center
+              bg-base-300
+              rounded-lg
+              text-white
+              uppercase
+              grid
+              font-bold
+              w-full
+              items-center
+              py-2
+              hover:bg-warning hover:text-black hover:scale-110
+              duration-300
+            "
+          >
+            <img
+              class="w-14 mx-auto"
+              src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png"
+              alt=""
+            />
+            <p>AMEY</p>
+          </div>
+          <div
+            class="
+              text-center
+              bg-base-300
+              rounded-lg
+              text-white
+              uppercase
+              grid
+              font-bold
+              w-full
+              items-center
+              py-2
+              hover:bg-warning hover:text-black hover:scale-110
+              duration-300
+            "
+          >
+            <img
+              class="w-14 mx-auto"
+              src="https://cdn-icons-png.flaticon.com/512/7295/7295280.png"
+              alt=""
+            />
+            <p>SPUNIK</p>
+          </div>
+          <div
+            class="
+              text-center
+              bg-base-300
+              rounded-lg
+              text-white
+              uppercase
+              grid
+              font-bold
+              w-full
+              items-center
+              py-2
+              hover:bg-warning hover:text-black hover:scale-110
+              duration-300
+            "
+          >
+            <img
+              class="w-14 mx-auto"
+              src="https://cdn-icons-png.flaticon.com/512/7457/7457329.png"
+              alt=""
+            />
+            <p>Andy</p>
+          </div>
+        </div>
+        <div class="sm:w-1/5 mb-3 flex gap-2 h-[80px]">
+          <button
+            id="start-btn"
+            class="
+              text-center
+              bg-warning
+              rounded-lg
+              text-black
+              uppercase
+              grid
+              font-bold
+              w-full
+              items-center
+              py-2
+              hover:bg-warning hover:text-black hover:scale-110
+              duration-300
+            "
+          >
+            <p>GO RACE</p>
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    var startBtn = document.getElementById('start-btn');
+    var runAnim = document.querySelectorAll('.run-anim');
+    var getSign = document.querySelector('.sign');
+    var swingSign = document.querySelector('.holder-swing');
+    var goldHorse = document.querySelector('.horse-gold');
+    var whiteHorse = document.querySelector('.horse-white');
+    var brownHorse = document.querySelector('.horse-brown');
+
+    var goldRes, whiteRes, brownRes, max;
+
+    var randomNo = function getRandom(min, max) {
+      min = Math.ceil(6);
+      max = Math.floor(9);
+      return Math.floor(Math.random() * (max - min)) + min;
+    };
+
+    startBtn.addEventListener('click', () => {
+      start();
+      timeout();
+    });
+
+    function start() {
+      for (var i = 0; i < runAnim.length; i++) {
+        // Start the animation
+        runAnim[i].style.webkitAnimationPlayState = 'running';
+      }
+
+      // Add random time
+      goldRes = goldHorse.style.animationDuration = randomNo() + 's';
+      whiteRes = whiteHorse.style.animationDuration = randomNo() + 's';
+      brownRes = brownHorse.style.animationDuration = randomNo() + 's';
+
+      // Toggle animate class
+      goldHorse.classList.toggle('animate');
+      whiteHorse.classList.toggle('animate');
+      brownHorse.classList.toggle('animate');
+
+      // Add styles to disable button
+      startBtn.disabled = true;
+      startBtn.style.cursor = 'not-allowed';
+      getSign.style.opacity = '0.6';
+      startBtn.style.opacity = '0.6';
+
+      swingSign.style.display = 'none';
+    }
+
+    function timeout() {
+      // Make integer from results and get the largest
+      var goldInteger = parseInt(goldRes, 10);
+      var whiteInteger = parseInt(whiteRes, 10);
+      var brownInteger = parseInt(brownRes, 10);
+      var numbers = [goldInteger, whiteInteger, brownInteger];
+      max = Math.max.apply(null, numbers) * 1000;
+
+      function timer() {
+        setTimeout(function () {
+          end();
+          results();
+        }, max);
+      }
+      timer();
+    }
+
+    function end() {
+      // Reset the button after animation ends
+      function resetBtn() {
+        startBtn.disabled = false;
+        startBtn.style.opacity = '1';
+        startBtn.style.cursor = 'pointer';
+        getSign.style.opacity = '1';
+      }
+      resetBtn();
+
+      // Remove animate class after animation ends
+      function removeAnim() {
+        goldHorse.classList.remove('animate');
+        whiteHorse.classList.remove('animate');
+        brownHorse.classList.remove('animate');
+      }
+      removeAnim();
+
+      swingSign.style.animationName = 'swing';
+      swingSign.style.display = 'block';
+    }
+
+    // Get the results
+    function results() {
+      let winner = document.getElementById('winner');
+      if (goldRes == whiteRes && goldRes < brownRes) {
+        winner.innerHTML =
+          '<div><img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7295/7295280.png" />AME and SPUNIK are tie!<img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png"/></div>';
+      } else if (goldRes == brownRes && goldRes < whiteRes) {
+        winner.innerHTML =
+          '<div><img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7295/7295280.png" />AME and ANDY are tie!<img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7457/7457329.png"/></div>';
+      } else if (whiteRes == goldRes && whiteRes < brownRes) {
+        winner.innerHTML =
+          '<div><img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png" />SPUNIK and AME are tie!<img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7457/7457329.png"/></div>';
+      } else if (whiteRes == brownRes && whiteRes < goldRes) {
+        winner.innerHTML =
+          '<div><img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png" />SPUNIK and ANDY are tie!<img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7457/7457329.png"/></div>';
+      } else if (brownRes == goldRes && brownRes == whiteRes) {
+        winner.innerHTML = '<div>All SPACESHIP <br> are tie!</div>';
+      } else if (goldRes < whiteRes && goldRes < brownRes) {
+        winner.innerHTML =
+          '<div><img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7295/7295280.png" />AME Wins!</h3>';
+      } else if (whiteRes < goldRes && whiteRes < brownRes) {
+        winner.innerHTML =
+          '<div><img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png" />SPUNIK Wins!</div>';
+      } else if (brownRes < goldRes && brownRes < whiteRes) {
+        winner.innerHTML =
+          '<div><img class="w-24 mx-auto" src="https://cdn-icons-png.flaticon.com/512/7457/7457329.png" />ANDY Wins!</div>';
+      }
+    }
+  </script>
+</html>

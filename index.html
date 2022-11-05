@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <title>Suwit</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      ba {
+        overflow: hidden;
+      }
+      .horses {
+        margin-bottom: 48vh;
+        margin-left: -30px;
+        margin-right: -50px;
+      }
+      .horse-gold {
+        position: relative;
+        left: 5vw;
+      }
+      .horse-white {
+        position: relative;
+        left: 3vw;
+      }
+      .horse-brown {
+        position: relative;
+        left: 0vw;
+      }
+      .animate {
+        position: relative;
+        animation: run ease-in;
+        animation-play-state: paused;
+      }
+
+      .sign {
+        position: relative;
+        top: 0%;
+        transform: translateX(-50%);
+      }
+
+      .holder-swing {
+        transform-origin: top;
+        animation: 2s;
+      }
+
+      #winner {
+        border-color: aliceblue;
+      }
+      @keyframes run {
+        0% {
+          left: 0px;
+          top: 300px;
+        }
+
+        100% {
+          left: 0px;
+          top: 0px;
+        }
+      }
+      @keyframes swing {
+        0% {
+          transform: rotateX(90deg);
+        }
+        50% {
+          transform: rotateX(-30deg);
+        }
+        80% {
+          transform: rotateX(20deg);
+        }
+        100% {
+          transform: rotateX(0deg);
+        }
+      }
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+      .animated {
+        animation-duration: 6s;
+        animation-fill-mode: both;
+        animation-iteration-count: infinite;
+      }
+
+      @keyframes wobblex {
+        0% {
+          transform: translateX(0);
+        }
+        20% {
+          transform: translate(-8px, 2px) scale(1);
+        }
+        40% {
+          transform: translate(-2px, -8px);
+        }
+        60% {
+          transform: translate(4px, 2px) scale(1.1);
+        }
+        80% {
+          transform: translate(12px, -8px) scale(1);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+      .wobblex {
+        animation-name: wobblex;
+      }
+
+      @keyframes spu {
+        0% {
+          transform: translateX(0);
+        }
+        10% {
+          transform: translate(-2px, 2px) scale(1.1);
+        }
+        30% {
+          transform: translate(-2px, -2px);
+        }
+        50% {
+          transform: translate(12px, 2px) scale(1);
+        }
+        70% {
+          transform: translate(2px, -8px) scale(1.1);
+        }
+        100% {
+          transform: translate(0);
+        }
+      }
+      .spu {
+        animation-name: spu;
+      }
+
+      @keyframes andy {
+        0% {
+          transform: translateX(0) scale(1.1);
+        }
+        25% {
+          transform: translate(-2px, 2px);
+        }
+        45% {
+          transform: translate(-10px, -2px);
+        }
+        65% {
+          transform: translate(2px, 2px) scale(1);
+        }
+        85% {
+          transform: translate(2px, -10px) scale(1.1);
+        }
+        100% {
+          transform: translate(0) scale(1.1);
+        }
+      }
+      .andy {
+        animation-name: andy;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="
+        mx-auto
+        max-w-screen-lg
+        h-screen
+        grid
+        bary
+        overflow-hidden
+        bg-cover bg-center
+      "
+      style="
+        background-image: url(http://localhost:3000/src/assets/a/contest-bg.jpeg);
+      "
+    >
+      <ba>
+        <div class="holder-sign">
+          <div class="sign card" src="" alt="Sign">
+            <h3 class="card">sadsadasd</h3>
+          </div>
+        </div>
+        <div
+          class="
+            absolute
+            ml-8
+            rounded-xl
+            shadow-md
+            w-max
+            bg-warning
+            text-primary-content
+            holder-swing
+            mx-auto
+          "
+        >
+          <h3 id="winner" class="text-2xl font-bold text-black text-center p-5">
+            Choose your space
+          </h3>
+        </div>
+        <ul class="horses space-x-48 flex">
+          <li class="horse">
+            <div class="horse-gold run-anim">
+              <img
+                class="w-24 animated wobblex"
+                src="https://cdn-icons-png.flaticon.com/512/7295/7295280.png"
+                alt=""
+              />
+            </div>
+          </li>
+          <li class="horse">
+            <div class="horse-white run-anim">
+              <img
+                class="w-24 animated spu"
+                src="https://cdn-icons-png.flaticon.com/512/7295/7295540.png"
+                alt=""
+              />
+            </div>
+          </li>
+          <li class="horse">
+            <div class="horse-brown run-anim">
+              <img
+                class="w-24 animated andy"
+                src="https://cdn-icons-png.flaticon.com/512/7457/7457329.png"
+                alt=""
+              />
+            </div>
+          </li>
+        </ul>
+      </ba>
+
+      <button id="start-btn" class="bg-secondary relative">
+        <img src="" alt="" class="w-24" />hjg
+      </button>
+    </div>
+  </body>
+
+  <script>
+    var startBtn = document.getElementById('start-btn');
+    var runAnim = document.querySelectorAll('.run-anim');
+    var getSign = document.querySelector('.sign');
+    var swingSign = document.querySelector('.holder-swing');
+    var goldHorse = document.querySelector('.horse-gold');
+    var whiteHorse = document.querySelector('.horse-white');
+    var brownHorse = document.querySelector('.horse-brown');
+
+    var goldRes, whiteRes, brownRes, max;
+
+    var randomNo = function getRandom(min, max) {
+      min = Math.ceil(6);
+      max = Math.floor(9);
+      return Math.floor(Math.random() * (max - min)) + min;
+    };
+
+    startBtn.addEventListener('click', () => {
+      start();
+      timeout();
+    });
+
+    function start() {
+      for (var i = 0; i < runAnim.length; i++) {
+        // Start the animation
+        runAnim[i].style.webkitAnimationPlayState = 'running';
+      }
+
+      // Add random time
+      goldRes = goldHorse.style.animationDuration = randomNo() + 's';
+      whiteRes = whiteHorse.style.animationDuration = randomNo() + 's';
+      brownRes = brownHorse.style.animationDuration = randomNo() + 's';
+
+      // Toggle animate class
+      goldHorse.classList.toggle('animate');
+      whiteHorse.classList.toggle('animate');
+      brownHorse.classList.toggle('animate');
+
+      // Add styles to disable button
+      startBtn.disabled = true;
+      startBtn.style.cursor = 'not-allowed';
+      getSign.style.opacity = '0.6';
+      startBtn.style.opacity = '0.6';
+
+      swingSign.style.display = 'none';
+    }
+
+    function timeout() {
+      // Make integer from results and get the largest
+      var goldInteger = parseInt(goldRes, 0);
+      var whiteInteger = parseInt(whiteRes, 0);
+      var brownInteger = parseInt(brownRes, 0);
+      var numbers = [goldInteger, whiteInteger, brownInteger];
+      max = Math.max.apply(null, numbers) * 1000;
+
+      function timer() {
+        setTimeout(function () {
+          end();
+          results();
+        }, max);
+      }
+      timer();
+    }
+
+    function end() {
+      // Reset the button after animation ends
+      function resetBtn() {
+        startBtn.disabled = false;
+        startBtn.style.opacity = '1';
+        startBtn.style.cursor = 'pointer';
+        getSign.style.opacity = '1';
+      }
+      resetBtn();
+
+      // Remove animate class after animation ends
+      function removeAnim() {
+        goldHorse.classList.remove('animate');
+        whiteHorse.classList.remove('animate');
+        brownHorse.classList.remove('animate');
+      }
+      removeAnim();
+
+      swingSign.style.animationName = 'swing';
+      swingSign.style.display = 'block';
+    }
+
+    // Get the results
+    function results() {
+      let winner = document.getElementById('winner');
+      if (goldRes == whiteRes && goldRes < brownRes) {
+        winner.innerHTML = '<h3 class="card p-5">AME and SPUNIK are tie!</h3>';
+      } else if (goldRes == brownRes && goldRes < whiteRes) {
+        winner.innerHTML = '<h3 class="card p-5">AME and ANDY are tie!</h3>';
+      } else if (whiteRes == goldRes && whiteRes < brownRes) {
+        winner.innerHTML = '<h3 class="card p-5">SPUNIK and AME are tie!</h3>';
+      } else if (whiteRes == brownRes && whiteRes < goldRes) {
+        winner.innerHTML = '<h3 class="card p-5">SPUNIK and ANDY are tie!</h3>';
+      } else if (brownRes == goldRes && brownRes == whiteRes) {
+        winner.innerHTML = '<h3 class="card p-5">All SPACE are tie!</h3>';
+      } else if (goldRes < whiteRes && goldRes < brownRes) {
+        winner.innerHTML = 'AME SPACE Wins!</h3>';
+      } else if (whiteRes < goldRes && whiteRes < brownRes) {
+        winner.innerHTML = '<h3 class="card p-5">SPUNIK SPACE Wins!</h3>';
+      } else if (brownRes < goldRes && brownRes < whiteRes) {
+        winner.innerHTML = '<h3 class="card p-5">ANDY SPACE Wins!</h3>';
+      }
+    }
+  </script>
+</html>
