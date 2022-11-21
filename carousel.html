@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <title>Suwit</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .mySlides {
+      display: none;
+      padding: 0px 20px 0px 20px;
+    }
+
+    img {
+      vertical-align: middle;
+    }
+
+    /* Slideshow container */
+    .slideshow-container {
+      max-width: 1000px;
+      position: relative;
+      margin: auto;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      border-radius: 0 3px 3px 0;
+      user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    /* On hover, add a black background color with a little bit see-through */
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Caption text */
+    .text {
+      color: #f2f2f2;
+      font-size: 15px;
+      padding: 8px 12px;
+      position: absolute;
+      bottom: 8px;
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+      color: #f2f2f2;
+      font-size: 12px;
+      padding: 8px 12px;
+      position: absolute;
+      top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+      cursor: pointer;
+      height: 8px;
+      width: 8px;
+      margin: 0 2px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.6s ease;
+    }
+
+    .active,
+    .dot:hover {
+      background-color: red;
+    }
+
+    /* Fading animation */
+    .fade {
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0.4;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* On smaller screens, decrease text size */
+    @media only screen and (max-width: 300px) {
+      .prev,
+      .next,
+      .text {
+        font-size: 11px;
+      }
+    }
+
+    .bg {
+      animation: slide 13s ease-in-out infinite alternate;
+      background-image: linear-gradient(-60deg, #000 50%, #0f172a 50%);
+      bottom: 0;
+      left: -50%;
+      opacity: 0.8;
+      position: fixed;
+      right: -50%;
+      top: 0;
+      z-index: -10;
+    }
+
+    .bg2 {
+      animation-direction: alternate-reverse;
+      animation-duration: 14s;
+    }
+
+    .bg3 {
+      animation-duration: 15s;
+    }
+
+    @keyframes slide {
+      0% {
+        transform: translateX(-25%);
+      }
+
+      100% {
+        transform: translateX(25%);
+      }
+    }
+
+    #canvas {
+      background-color: #2c343f;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .dropbtn {
+      background-color: #04aa6d;
+      color: white;
+      padding: 16px;
+      font-size: 16px;
+      border: none;
+    }
+
+    .dropdownx {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdownx-content {
+      display: none;
+      position: absolute;
+      background-color: transparent;
+      z-index: 1;
+    }
+
+    .dropdownx-content a {
+      color: transparent;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdownx-content a:hover {
+    }
+
+    .dropdownx:hover .dropdownx-content {
+      display: block;
+    }
+
+    .dropdownx:hover .dropbtn {
+    }
+  </style>
+  <body class="bg-slate-900">
+    <canvas id="canvas"></canvas>
+    <nav
+      class="
+        z-20
+        flex
+        items-center
+        justify-between
+        border-b border-b-slate-700
+        bg-slate-800
+        py-2
+        px-3
+      "
+    >
+      <img
+        src="http://127.0.0.1:8000/img/logo-terbaru.png"
+        class="h-16 p-3"
+        alt=""
+      />
+      <div class="hidden sm:block">
+        <div class="dropdownx">
+          <button
+            type="button"
+            class="
+              text-md
+              inline-flex
+              h-12
+              items-center
+              rounded-lg
+              bg-blue-700/0
+              px-5
+              py-2.5
+              font-bold
+              text-white
+              hover:bg-yellow-500 hover:text-black
+              focus:bg-yellow-500
+              focus:text-black
+              focus:ring-0
+              focus:ring-yellow-500
+            "
+          >
+            <svg
+              class="mr-2-ml-1 h-4 w-4"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="facebook-f"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path
+                fill="currentColor"
+                d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"
+              ></path>
+            </svg>
+            GAMES
+          </button>
+          <div
+            class="dropdownx-content pt-1 w-[600px]bg-slate-800 rounded-b-xl"
+          >
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dropdownx">
+          <button
+            type="button"
+            class="
+              text-md
+              inline-flex
+              h-12
+              items-center
+              rounded-lg
+              bg-blue-700/0
+              px-5
+              py-2.5
+              font-bold
+              text-white
+              hover:bg-yellow-500 hover:text-black
+              focus:bg-yellow-500
+              focus:text-black
+              focus:ring-0
+              focus:ring-yellow-500
+              uppercase
+            "
+          >
+            <svg
+              class="mr-2-ml-1 h-4 w-4"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="facebook-f"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path
+                fill="currentColor"
+                d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"
+              ></path>
+            </svg>
+            bonusses
+          </button>
+          <div
+            class="dropdownx-content pt-1 w-[600px]bg-slate-800 rounded-b-xl"
+          >
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dropdownx">
+          <button
+            type="button"
+            class="
+              text-md
+              inline-flex
+              h-12
+              items-center
+              rounded-lg
+              bg-blue-700/0
+              px-5
+              py-2.5
+              font-bold
+              text-white
+              hover:bg-yellow-500 hover:text-black
+              focus:bg-yellow-500
+              focus:text-black
+              focus:ring-0
+              focus:ring-yellow-500
+              uppercase
+            "
+          >
+            <svg
+              class="mr-2-ml-1 h-4 w-4"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="facebook-f"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path
+                fill="currentColor"
+                d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"
+              ></path>
+            </svg>
+            FEATURES
+          </button>
+          <div
+            class="dropdownx-content pt-1 w-[600px]bg-slate-800 rounded-b-xl"
+          >
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="dropdownx">
+          <button
+            type="button"
+            class="
+              text-md
+              inline-flex
+              h-12
+              items-center
+              rounded-lg
+              bg-blue-700/0
+              px-5
+              py-2.5
+              font-bold
+              text-white
+              hover:bg-yellow-500 hover:text-black
+              focus:bg-yellow-500
+              focus:text-black
+              focus:ring-0
+              focus:ring-yellow-500
+              uppercase
+            "
+          >
+            <svg
+              class="mr-2-ml-1 h-4 w-4"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="facebook-f"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path
+                fill="currentColor"
+                d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"
+              ></path>
+            </svg>
+            About
+          </button>
+          <div
+            class="dropdownx-content pt-1 w-[600px]bg-slate-800 rounded-b-xl"
+          >
+            <div class="flex flex-wrap">
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+              <div class="md:w-1/2 p-2">
+                <div class="bg-white p-6 rounded-lg flex">
+                  <div
+                    class="
+                      w-12
+                      h-12
+                      inline-flex
+                      items-center
+                      justify-center
+                      rounded-xl
+                      bg-indigo-100
+                      text-indigo-500
+                      mr-3
+                      p-2
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      class="w-12 h-12"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                    </svg>
+                  </div>
+                  <h2 class="text-xl text-gray-900 font-bold title-font mb-2">
+                    Shooting Stars
+                    <p class="font-medium text-sm text-base">
+                      Fingerstache flexitarian street art 8-bit waist co.
+                    </p>
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center space-x-2">
+        <div class="rounded-xl bg-slate-700">
+          <button
+            type="button"
+            class="
+              inline-flex
+              h-12
+              items-center
+              rounded-l-lg
+              bg-slate-700
+              px-5
+              text-lg
+              font-bold
+              text-white
+              hover:bg-slate-600
+              focus:ring-1 focus:ring-blue-300
+            "
+          >
+            <svg
+              class="mr-4-ml-1 h-4 w-4 text-pink-500"
+              aria-hidden="true"
+              focusable="false"
+              data-prefix="fab"
+              data-icon="facebook-f"
+              role="img"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 320 512"
+            >
+              <path
+                fill="currentColor"
+                d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"
+              ></path>
+            </svg>
+            312.200
+          </button>
+          <button
+            type="button"
+            class="
+              text-md
+              inline-flex
+              h-12
+              items-center
+              rounded-r-lg
+              bg-yellow-500
+              px-5
+              py-2.5
+              font-bold
+              text-black
+              focus:ring-1 focus:ring-yellow-300
+            "
+          >
+            DEMO
+          </button>
+        </div>
+        <button
+          type="button"
+          class="
+            text-md
+            hidden
+            h-12
+            items-center
+            rounded-lg
+            bg-slate-700
+            px-5
+            py-2.5
+            font-bold
+            text-white
+            hover:bg-yellow-500 hover:text-black
+            focus:bg-yellow-500
+            focus:text-black
+            focus:ring-0
+            focus:ring-yellow-500
+            sm:block
+          "
+        >
+          <svg
+            class="h-4 w-4"
+            aria-hidden="true"
+            focusable="false"
+            data-prefix="fab"
+            data-icon="facebook-f"
+            role="img"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+          >
+            <path
+              fill="currentColor"
+              d="M279.1 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.4 0 225.4 0c-73.22 0-121.1 44.38-121.1 124.7v70.62H22.89V288h81.39v224h100.2V288z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <div class="py-48 w-full">
+      <div class="mx-auto max-w-screen-xl px-6">
+        <div class="slideshow-container">
+          <div class="mySlides fade">
+            <section class="text-gray-600">
+              <div
+                class="
+                  container
+                  mx-auto
+                  flex flex-col
+                  items-center
+                  py-12
+                  md:flex-row
+                "
+              >
+                <div
+                  class="
+                    mb-16
+                    flex flex-col
+                    items-center
+                    text-center
+                    md:mb-0 md:w-1/2 md:items-start md:pr-16 md:text-left
+                    lg:flex-grow lg:pr-24
+                  "
+                >
+                  <h1
+                    class="mb-4 text-4xl font-black text-pink-600 sm:text-6xl"
+                  >
+                    Welcome to 777onChain <br />
+                    GO BIG or GO HOME!
+                  </h1>
+                  <p class="my-8 text-2xl font-bold text-white">
+                    We are committed to fast payment, solid games, and quick
+                    support. <br />
+                    Join us now and enjoy all the welcome bonusses!
+                  </p>
+                  <div class="flex justify-center">
+                    <button
+                      type="button"
+                      class="
+                        text-md
+                        inline-flex
+                        h-12
+                        items-center
+                        rounded-lg
+                        bg-yellow-500
+                        px-5
+                        py-2.5
+                        font-bold
+                        hover:shadow-lg hover:shadow-yellow-600/50
+                        duration-300
+                        text-black
+                        focus:ring-1 focus:ring-yellow-300
+                      "
+                    >
+                      Know More !
+                    </button>
+                  </div>
+                </div>
+                <div class="w-4/6 md:w-1/2 lg:w-full lg:max-w-lg">
+                  <img
+                    class="rounded object-cover object-center"
+                    alt="hero"
+                    src="https://dummyimage.com/720x600"
+                  />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="mySlides fade">
+            <section class="text-gray-600">
+              <div
+                class="
+                  container
+                  mx-auto
+                  flex flex-col
+                  items-center
+                  py-12
+                  md:flex-row
+                "
+              >
+                <div
+                  class="
+                    mb-16
+                    flex flex-col
+                    items-center
+                    text-center
+                    md:mb-0 md:w-1/2 md:items-start md:pr-16 md:text-left
+                    lg:flex-grow lg:pr-24
+                  "
+                >
+                  <h1
+                    class="mb-4 text-8xl font-black text-pink-600 sm:text-4xl"
+                  >
+                    $CHIPS Presale Coming Soon
+                    <br />
+                    Do Not Missed It!
+                  </h1>
+                  <p class="my-8 text-2xl font-bold text-white">
+                    $CHIPS is the native token of 777onChain platform deployed
+                    on Binance Smart Chain. <br />
+                    $CHIPS will launching soon on Pinksale. Join and book your
+                    spot now!
+                  </p>
+                  <div class="flex justify-center">
+                    <button
+                      class="
+                        inline-flex
+                        rounded
+                        border-0
+                        bg-indigo-500
+                        py-2
+                        px-6
+                        text-lg text-white
+                        hover:bg-indigo-600
+                        focus:outline-none
+                      "
+                    >
+                      JOIN PRESALE
+                    </button>
+                  </div>
+                </div>
+                <div class="w-4/6 md:w-1/2 lg:w-full lg:max-w-lg">
+                  <img
+                    class="rounded object-cover object-center"
+                    alt="hero"
+                    src="https://dummyimage.com/720x600"
+                  />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="mySlides fade">
+            <section class="text-gray-600">
+              <div
+                class="
+                  container
+                  mx-auto
+                  flex flex-col
+                  items-center
+                  py-12
+                  md:flex-row
+                "
+              >
+                <div
+                  class="
+                    mb-16
+                    flex flex-col
+                    items-center
+                    text-center
+                    md:mb-0 md:w-1/2 md:items-start md:pr-16 md:text-left
+                    lg:flex-grow lg:pr-24
+                  "
+                >
+                  <h1
+                    class="mb-4 text-8xl font-black text-pink-600 sm:text-4xl"
+                  >
+                    Be A Part of
+                    <br />
+                    777onChain Community
+                  </h1>
+                  <p class="my-8 text-2xl font-bold text-white">
+                    Join 777onChain community now! Let us grow together! <br />
+                    Catch us on Social Media
+                  </p>
+                  <div class="flex justify-center">
+                    <button
+                      class="
+                        inline-flex
+                        rounded
+                        border-0
+                        bg-indigo-500
+                        py-2
+                        px-6
+                        text-lg text-white
+                        hover:bg-indigo-600
+                        focus:outline-none
+                      "
+                    >
+                      START NOW!
+                    </button>
+                  </div>
+                </div>
+                <div class="w-4/6 md:w-1/2 lg:w-full lg:max-w-lg">
+                  <img
+                    class="rounded object-cover object-center"
+                    alt="hero"
+                    src="https://dummyimage.com/720x600"
+                  />
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <a class="prev" onclick="plusSlides(-1)">❮</a>
+          <a class="next" onclick="plusSlides(1)">❯</a>
+        </div>
+
+        <div class="flex flex-wrap md:px-5 mt-24 mx-auto max-w-screen-lg">
+          <div class="p-2 xl:p-4 md:w-1/4">
+            <div
+              class="
+                h-full
+                border-2 border-slate-700
+                bg-slate-800
+                border-opacity-60
+                rounded-xl
+                overflow-hidden
+                p-4
+                pb-1
+                group
+              "
+            >
+              <img
+                class="
+                  md:h-[150px]
+                  xl:h-[200px]
+                  h-[250px]
+                  rounded-lg
+                  group-hover:scale-105
+                  duration-300
+                "
+                src="https://dummyimage.com/720x400"
+                alt="blog"
+              />
+              <div class="pt-4">
+                <h2
+                  class="
+                    tracking-widest
+                    xl:text-2xl
+                    md:text-xl
+                    title-font
+                    font-bold
+                    text-gray-400
+                    mb-1
+                  "
+                >
+                  MINE
+                </h2>
+
+                <div class="flex items-center flex-wrap justify-between">
+                  <a
+                    class="
+                      text-indigo-500
+                      group-hover:bg-yellow-500 group-hover:px-4
+                      py-2
+                      duration-300
+                      rounded-lg
+                      inline-flex
+                      items-center
+                      md:mb-2
+                      lg:mb-0
+                    "
+                    >Play Now
+                  </a>
+                  <span
+                    class="
+                      text-gray-400
+                      mr-3
+                      inline-flex
+                      items-center
+                      lg:ml-auto
+                      md:ml-0
+                      ml-auto
+                      leading-none
+                      text-sm
+                    "
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                      ></path>
+                      <circle cx="12" cy="12" r="3"></circle></svg
+                    >12
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 xl:p-4 md:w-1/4">
+            <div
+              class="
+                h-full
+                border-2 border-slate-700
+                bg-slate-800
+                border-opacity-60
+                rounded-xl
+                overflow-hidden
+                p-4
+                pb-1
+                group
+              "
+            >
+              <img
+                class="
+                  md:h-[150px]
+                  xl:h-[200px]
+                  h-[250px]
+                  rounded-lg
+                  group-hover:scale-105
+                  duration-300
+                "
+                src="https://dummyimage.com/720x400"
+                alt="blog"
+              />
+              <div class="pt-4">
+                <h2
+                  class="
+                    tracking-widest
+                    xl:text-2xl
+                    md:text-xl
+                    title-font
+                    font-bold
+                    text-gray-400
+                    mb-1
+                  "
+                >
+                  MINE
+                </h2>
+
+                <div class="flex items-center flex-wrap justify-between">
+                  <a
+                    class="
+                      text-indigo-500
+                      group-hover:bg-yellow-500 group-hover:px-4
+                      py-2
+                      duration-300
+                      rounded-lg
+                      inline-flex
+                      items-center
+                      md:mb-2
+                      lg:mb-0
+                    "
+                    >Play Now
+                  </a>
+                  <span
+                    class="
+                      text-gray-400
+                      mr-3
+                      inline-flex
+                      items-center
+                      lg:ml-auto
+                      md:ml-0
+                      ml-auto
+                      leading-none
+                      text-sm
+                    "
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                      ></path>
+                      <circle cx="12" cy="12" r="3"></circle></svg
+                    >12
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 xl:p-4 md:w-1/4">
+            <div
+              class="
+                h-full
+                border-2 border-slate-700
+                bg-slate-800
+                border-opacity-60
+                rounded-xl
+                overflow-hidden
+                p-4
+                pb-1
+                group
+              "
+            >
+              <img
+                class="
+                  md:h-[150px]
+                  xl:h-[200px]
+                  h-[250px]
+                  rounded-lg
+                  group-hover:scale-105
+                  duration-300
+                "
+                src="https://dummyimage.com/720x400"
+                alt="blog"
+              />
+              <div class="pt-4">
+                <h2
+                  class="
+                    tracking-widest
+                    xl:text-2xl
+                    md:text-xl
+                    title-font
+                    font-bold
+                    text-gray-400
+                    mb-1
+                  "
+                >
+                  MINE
+                </h2>
+
+                <div class="flex items-center flex-wrap justify-between">
+                  <a
+                    class="
+                      text-indigo-500
+                      group-hover:bg-yellow-500 group-hover:px-4
+                      py-2
+                      duration-300
+                      rounded-lg
+                      inline-flex
+                      items-center
+                      md:mb-2
+                      lg:mb-0
+                    "
+                    >Play Now
+                  </a>
+                  <span
+                    class="
+                      text-gray-400
+                      mr-3
+                      inline-flex
+                      items-center
+                      lg:ml-auto
+                      md:ml-0
+                      ml-auto
+                      leading-none
+                      text-sm
+                    "
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                      ></path>
+                      <circle cx="12" cy="12" r="3"></circle></svg
+                    >12
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 xl:p-4 md:w-1/4">
+            <div
+              class="
+                h-full
+                border-2 border-slate-700
+                bg-slate-800
+                border-opacity-60
+                rounded-xl
+                overflow-hidden
+                p-4
+                pb-1
+                group
+              "
+            >
+              <img
+                class="
+                  md:h-[150px]
+                  xl:h-[200px]
+                  h-[250px]
+                  rounded-lg
+                  group-hover:scale-105
+                  duration-300
+                "
+                src="https://dummyimage.com/720x400"
+                alt="blog"
+              />
+              <div class="pt-4">
+                <h2
+                  class="
+                    tracking-widest
+                    xl:text-2xl
+                    md:text-xl
+                    title-font
+                    font-bold
+                    text-gray-400
+                    mb-1
+                  "
+                >
+                  MINE
+                </h2>
+
+                <div class="flex items-center flex-wrap justify-between">
+                  <a
+                    class="
+                      text-indigo-500
+                      group-hover:bg-yellow-500 group-hover:px-4
+                      py-2
+                      duration-300
+                      rounded-lg
+                      inline-flex
+                      items-center
+                      md:mb-2
+                      lg:mb-0
+                    "
+                    >Play Now
+                  </a>
+                  <span
+                    class="
+                      text-gray-400
+                      mr-3
+                      inline-flex
+                      items-center
+                      lg:ml-auto
+                      md:ml-0
+                      ml-auto
+                      leading-none
+                      text-sm
+                    "
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                      ></path>
+                      <circle cx="12" cy="12" r="3"></circle></svg
+                    >12
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 xl:p-4 md:w-1/4">
+            <div
+              class="
+                h-full
+                border-2 border-slate-700
+                bg-slate-800
+                border-opacity-60
+                rounded-xl
+                overflow-hidden
+                p-4
+                pb-1
+                group
+              "
+            >
+              <img
+                class="
+                  md:h-[150px]
+                  xl:h-[200px]
+                  h-[250px]
+                  rounded-lg
+                  group-hover:scale-105
+                  duration-300
+                "
+                src="https://dummyimage.com/720x400"
+                alt="blog"
+              />
+              <div class="pt-4">
+                <h2
+                  class="
+                    tracking-widest
+                    xl:text-2xl
+                    md:text-xl
+                    title-font
+                    font-bold
+                    text-gray-400
+                    mb-1
+                  "
+                >
+                  MINE
+                </h2>
+
+                <div class="flex items-center flex-wrap justify-between">
+                  <a
+                    class="
+                      text-indigo-500
+                      group-hover:bg-yellow-500 group-hover:px-4
+                      py-2
+                      duration-300
+                      rounded-lg
+                      inline-flex
+                      items-center
+                      md:mb-2
+                      lg:mb-0
+                    "
+                    >Play Now
+                  </a>
+                  <span
+                    class="
+                      text-gray-400
+                      mr-3
+                      inline-flex
+                      items-center
+                      lg:ml-auto
+                      md:ml-0
+                      ml-auto
+                      leading-none
+                      text-sm
+                    "
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                      ></path>
+                      <circle cx="12" cy="12" r="3"></circle></svg
+                    >12
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 xl:p-4 md:w-1/4">
+            <div
+              class="
+                h-full
+                border-2 border-slate-700
+                bg-slate-800
+                border-opacity-60
+                rounded-xl
+                overflow-hidden
+                p-4
+                pb-1
+                group
+              "
+            >
+              <img
+                class="
+                  md:h-[150px]
+                  xl:h-[200px]
+                  h-[250px]
+                  rounded-lg
+                  group-hover:scale-105
+                  duration-300
+                "
+                src="https://dummyimage.com/720x400"
+                alt="blog"
+              />
+              <div class="pt-4">
+                <h2
+                  class="
+                    tracking-widest
+                    xl:text-2xl
+                    md:text-xl
+                    title-font
+                    font-bold
+                    text-gray-400
+                    mb-1
+                  "
+                >
+                  MINE
+                </h2>
+
+                <div class="flex items-center flex-wrap justify-between">
+                  <a
+                    class="
+                      text-indigo-500
+                      group-hover:bg-yellow-500 group-hover:px-4
+                      py-2
+                      duration-300
+                      rounded-lg
+                      inline-flex
+                      items-center
+                      md:mb-2
+                      lg:mb-0
+                    "
+                    >Play Now
+                  </a>
+                  <span
+                    class="
+                      text-gray-400
+                      mr-3
+                      inline-flex
+                      items-center
+                      lg:ml-auto
+                      md:ml-0
+                      ml-auto
+                      leading-none
+                      text-sm
+                    "
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                      ></path>
+                      <circle cx="12" cy="12" r="3"></circle></svg
+                    >12
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="p-2 xl:p-4 md:w-1/2">
+            <div
+              class="
+                h-full
+                border-2 border-slate-700
+                bg-slate-800
+                border-opacity-60
+                rounded-xl
+                overflow-hidden
+                p-4
+                pb-1
+                group
+              "
+            >
+              <img
+                class="
+                  md:h-[150px]
+                  xl:h-[200px]
+                  h-[250px]
+                  w-full
+                  rounded-lg
+                  group-hover:scale-105
+                  duration-300
+                "
+                src="https://dummyimage.com/720x400"
+                alt="blog"
+              />
+              <div class="pt-4">
+                <h2
+                  class="
+                    tracking-widest
+                    xl:text-2xl
+                    md:text-xl
+                    title-font
+                    font-bold
+                    text-gray-400
+                    mb-1
+                  "
+                >
+                  MINE
+                </h2>
+
+                <div class="flex items-center flex-wrap justify-between">
+                  <a
+                    class="
+                      text-indigo-500
+                      group-hover:bg-yellow-500 group-hover:px-4
+                      py-2
+                      duration-300
+                      rounded-lg
+                      inline-flex
+                      items-center
+                      md:mb-2
+                      lg:mb-0
+                    "
+                    >Play Now
+                  </a>
+                  <span
+                    class="
+                      text-gray-400
+                      mr-3
+                      inline-flex
+                      items-center
+                      lg:ml-auto
+                      md:ml-0
+                      ml-auto
+                      leading-none
+                      text-sm
+                    "
+                  >
+                    <svg
+                      class="w-4 h-4 mr-2"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      fill="none"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                      ></path>
+                      <circle cx="12" cy="12" r="3"></circle></svg
+                    >12
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-48 bg-slate-800">
+      <section class="mx-auto max-w-screen-lg px-6 pt-6">
+        <div class="bg-slate-900 rounded-xl p-5 mx-auto">
+          <div class="text-center mb-20">
+            <h1
+              class="
+                sm:text-3xl
+                text-2xl
+                font-medium
+                text-center
+                title-font
+                text-gray-900
+                mb-4
+              "
+            >
+              Raw Denim Heirloom Man Braid
+            </h1>
+            <p class="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+              Blue bottle crucifix vinyl post-ironic four dollar toast vegan
+              taxidermy. Gastropub indxgo juice poutine, ramps microdosing banh
+              mi pug.
+            </p>
+          </div>
+          <div class="flex flex-wrap -m-4">
+            <div class="p-4 lg:w-1/4 sm:w-1/2 w-full">
+              <h2
+                class="
+                  font-medium
+                  title-font
+                  tracking-widest
+                  text-gray-900
+                  mb-4
+                  text-sm text-center
+                  sm:text-left
+                "
+              >
+                SHOOTING STARS
+              </h2>
+              <nav
+                class="
+                  flex flex-col
+                  sm:items-start sm:text-left
+                  text-center
+                  items-center
+                  -mb-1
+                  space-y-2.5
+                "
+              >
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  First Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Second Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Third Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fourth Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fifth Link
+                </a>
+              </nav>
+            </div>
+            <div class="p-4 lg:w-1/4 sm:w-1/2 w-full">
+              <h2
+                class="
+                  font-medium
+                  title-font
+                  tracking-widest
+                  text-gray-900
+                  mb-4
+                  text-sm text-center
+                  sm:text-left
+                "
+              >
+                THE 400 BLOWS
+              </h2>
+              <nav
+                class="
+                  flex flex-col
+                  sm:items-start sm:text-left
+                  text-center
+                  items-center
+                  -mb-1
+                  space-y-2.5
+                "
+              >
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  First Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Second Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Third Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fourth Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fifth Link
+                </a>
+              </nav>
+            </div>
+            <div class="p-4 lg:w-1/4 sm:w-1/2 w-full">
+              <h2
+                class="
+                  font-medium
+                  title-font
+                  tracking-widest
+                  text-gray-900
+                  mb-4
+                  text-sm text-center
+                  sm:text-left
+                "
+              >
+                THE CATALYZER
+              </h2>
+              <nav
+                class="
+                  flex flex-col
+                  sm:items-start sm:text-left
+                  text-center
+                  items-center
+                  -mb-1
+                  space-y-2.5
+                "
+              >
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  First Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Second Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Third Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fourth Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fifth Link
+                </a>
+              </nav>
+            </div>
+            <div class="p-4 lg:w-1/4 sm:w-1/2 w-full">
+              <h2
+                class="
+                  font-medium
+                  title-font
+                  tracking-widest
+                  text-gray-900
+                  mb-4
+                  text-sm text-center
+                  sm:text-left
+                "
+              >
+                NEPTUNE
+              </h2>
+              <nav
+                class="
+                  flex flex-col
+                  sm:items-start sm:text-left
+                  text-center
+                  items-center
+                  -mb-1
+                  space-y-2.5
+                "
+              >
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  First Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Second Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Third Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fourth Link
+                </a>
+                <a>
+                  <span
+                    class="
+                      bg-indigo-100
+                      text-indigo-500
+                      w-4
+                      h-4
+                      mr-2
+                      rounded-full
+                      inline-flex
+                      items-center
+                      justify-center
+                    "
+                  >
+                    <svg
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="3"
+                      class="w-3 h-3"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M20 6L9 17l-5-5"></path>
+                    </svg>
+                  </span>
+                  Fifth Link
+                </a>
+              </nav>
+            </div>
+          </div>
+          <button
+            class="
+              flex
+              mx-auto
+              mt-16
+              text-white
+              bg-indigo-500
+              border-0
+              py-2
+              px-8
+              focus:outline-none
+              hover:bg-indigo-600
+              rounded
+              text-lg
+            "
+          >
+            Button
+          </button>
+        </div>
+      </section>
+    </div>
+
+    <div class="py-48 bg-slate-800">
+      <section class="mx-auto max-w-screen-lg">
+        <div
+          class="
+            container
+            lg:px-24
+            pt-6
+            bg-yellow-500/50 bg-blur
+            rounded-xl
+            flex flex-col
+            items-center
+            text-black
+            py-12
+            md:flex-row
+          "
+        >
+          <div
+            class="
+              mb-16
+              flex flex-col
+              items-center
+              text-center
+              md:mb-0 md:w-1/2 md:items-start md:pr-16 md:text-left
+              lg:flex-grow lg:pr-24
+            "
+          >
+            <h1 class="mb-4 text-4xl font-black sm:text-6xl">BE ONE OF THEM</h1>
+            <p class="my-8 text-2xl font-bold">
+              Get started in less than 5 min - no credit card required.Gain
+              early access to Dooplo and experience crypto like never before.
+            </p>
+            <div class="flex justify-center">
+              <button
+                type="button"
+                class="
+                  text-md
+                  inline-flex
+                  h-12
+                  items-center
+                  rounded-lg
+                  bg-blue-700/0
+                  px-5
+                  py-2.5
+                  bg-black
+                  font-bold
+                  text-white
+                  hover:bg-yellow-500 hover:text-black
+                  focus:bg-yellow-500
+                  focus:text-black
+                  focus:ring-0
+                  focus:ring-yellow-500
+                "
+              >
+                <img
+                  src="https://deothemes.com/envato/xhibiter/html/img/wallets/metamask.svg"
+                  class="w-12"
+                  alt=""
+                />
+                Connect
+              </button>
+            </div>
+            <p class="text-sm font-light my-4">
+              please check that Metamask is connected to Binance Smart Chain
+              network <br />
+              <a
+                href="http://"
+                class="link link-pink-500"
+                target="_blank"
+                rel="noopener noreferrer"
+                >(read more)</a
+              >.
+            </p>
+          </div>
+          <div class="md:w-1/2 w-full p-5 lg:max-w-lg">
+            <div class="bg-yellow-500 rounded-xl px-12 py-12 my-4 text-black">
+              <h3 class="sm:text-2xl text-xl font-extrabold">
+                OUR VALUE IN REAL LIFE
+              </h3>
+              <div class="form-control space-y-4">
+                <div>
+                  <label class="label"
+                    ><span class="label-text text-black"
+                      >Chips Amount</span
+                    ></label
+                  >
+                  <label class="input-group"
+                    ><input
+                      type="text"
+                      placeholder="0.01"
+                      class="input bg-white input-lg w-[90%]"
+                    /><span class="bg-gray-200">CHIP$</span></label
+                  >
+                </div>
+                <div class="mx-auto animate-bounce">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    height="24"
+                  >
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path
+                      d="M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm0 18c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8zm1-8h3l-4 4-4-4h3V8h2v4z"
+                    ></path>
+                  </svg>
+                </div>
+                <div>
+                  <label class="label -mt-12"
+                    ><span class="label-text text-black"
+                      >Usd Amount</span
+                    ></label
+                  >
+                  <label class="input-group"
+                    ><input
+                      type="text"
+                      placeholder="0.01"
+                      class="input bg-white input-lg w-[90%]"
+                    /><span class="bg-gray-200">$USD</span></label
+                  >
+                </div>
+                <button class="btn btn-lg">Convert</button>
+              </div>
+            </div>
+          </div>
+          c
+        </div>
+        <div
+          class="
+            mx-auto
+            grid grid-cols-2
+            sm:gap-5 sm:grid-cols-5 sm:space-y-0
+            space-y-4
+            rounded-2xl
+            mb-2
+            pt-5
+          "
+        >
+          <div
+            class="
+              relative
+              overflow-hidden
+              -z-0
+              col-span-3
+              duration-300
+              rounded-xl
+              bg-pink-500
+              bg-[url(/src/assets/a/promo-lotery2.png)]
+              bg-cover
+              bg-top
+              p-4
+              px-5
+              hover:shadow-xl hover:shadow-pink-500/50
+              sm:px-10
+            "
+          >
+            <div
+              class="
+                absolute
+                inset-0
+                -z-10
+                animate-getar
+                rounded-xl
+                bg-[url(/src/assets/a/lotery.png)]
+                bg-contain
+                bg-center
+                bg-no-repeat
+              "
+            ></div>
+            <div
+              class="
+                absolute
+                inset-0
+                -z-10
+                animate-fly
+                rounded-xl
+                bg-[url(/src/assets/a/lotery-1.png)]
+                bg-contain
+                bg-center
+                bg-no-repeat
+              "
+            ></div>
+            <div class="grid h-full text-center items-center">
+              <div class="duration-300 group-hover:mb-5 sm:py-20 hover:py-24">
+                <p
+                  class="
+                    uppercase
+                    font-semibold
+                    text-xs text-white
+                    bg-base-300
+                    w-max
+                    mx-auto
+                    px-8
+                    pt-2
+                    rounded-t-xl
+                    mt-8
+                  "
+                >
+                  Jackpot
+                </p>
+                <h1
+                  class="
+                    text-warning
+                    w-max
+                    mx-auto
+                    px-8
+                    py-3
+                    tx
+                    text-2xl
+                    font-black
+                    sm:text-5xl
+                    bg-base-200
+                    rounded-xl
+                    shadow-sm shadow-black
+                  "
+                >
+                  $ 21.000
+                </h1>
+                <div class="btn-group mt-2">
+                  <button class="btn btn-sm">start 07 : 41 : 24</button
+                  ><button class="btn btn-warning btn-sm">Ticket</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="
+              group
+              relative
+              -z-0
+              col-span-2
+              rounded-xl
+              bg-pink-500 bg-[url(/src/assets/a/promo-2.png)] bg-cover bg-bottom
+              p-4
+              px-5
+              duration-300
+              hover:shadow-xl hover:shadow-pink-500/50
+            "
+          >
+            <div
+              class="
+                absolute
+                inset-0
+                -z-10
+                animate-pulse
+                rounded-xl
+                bg-[url(/src/assets/a/burn-1.png)] bg-cover bg-bottom
+              "
+            ></div>
+            <div class="grid items-center h-full">
+              <div>
+                <h1
+                  class="
+                    text-white
+                    tx
+                    pt-4
+                    text-2xl
+                    font-black
+                    sm:text-4xl sm:w-1/2
+                    w-3/4
+                    uppercase
+                  "
+                >
+                  Invite your friends
+                </h1>
+                <p class="text-white sm:text-2xl">
+                  to join get extra <br />
+                  money
+                </p>
+              </div>
+              <a href="/bonus" class="btn w-max btn-warning shadow-md mt-8"
+                >Refferral</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>
+
+  <script>
+    var c = document.getElementById('canvas');
+    var ctx = c.getContext('2d');
+
+    function resize() {
+      var box = c.getBoundingClientRect();
+      c.width = box.width;
+      c.height = box.height;
+    }
+
+    var light = {
+      x: 160,
+      y: 200,
+    };
+
+    var colors = ['#f5c156', '#e6616b', '#5cd3ad'];
+
+    function drawLight() {
+      ctx.beginPath();
+      ctx.arc(light.x, light.y, 1000, 0, 2 * Math.PI);
+      var gradient = ctx.createRadialGradient(
+        light.x,
+        light.y,
+        0,
+        light.x,
+        light.y,
+        1000
+      );
+      gradient.addColorStop(0, '#3b4654');
+      gradient.addColorStop(1, '#2c343f');
+      ctx.fillStyle = gradient;
+      ctx.fill();
+
+      ctx.beginPath();
+      ctx.arc(light.x, light.y, 20, 0, 2 * Math.PI);
+      gradient = ctx.createRadialGradient(
+        light.x,
+        light.y,
+        0,
+        light.x,
+        light.y,
+        5
+      );
+      gradient.addColorStop(0, '#fff');
+      gradient.addColorStop(1, '#3b4654');
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+
+    function Box() {
+      this.half_size = Math.floor(Math.random() * 50 + 1);
+      this.x = Math.floor(Math.random() * c.width + 1);
+      this.y = Math.floor(Math.random() * c.height + 1);
+      this.r = Math.random() * Math.PI;
+      this.shadow_length = 2000;
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+
+      this.getDots = function () {
+        var full = (Math.PI * 2) / 4;
+
+        var p1 = {
+          x: this.x + this.half_size * Math.sin(this.r),
+          y: this.y + this.half_size * Math.cos(this.r),
+        };
+        var p2 = {
+          x: this.x + this.half_size * Math.sin(this.r + full),
+          y: this.y + this.half_size * Math.cos(this.r + full),
+        };
+        var p3 = {
+          x: this.x + this.half_size * Math.sin(this.r + full * 2),
+          y: this.y + this.half_size * Math.cos(this.r + full * 2),
+        };
+        var p4 = {
+          x: this.x + this.half_size * Math.sin(this.r + full * 3),
+          y: this.y + this.half_size * Math.cos(this.r + full * 3),
+        };
+
+        return {
+          p1: p1,
+          p2: p2,
+          p3: p3,
+          p4: p4,
+        };
+      };
+      this.rotate = function () {
+        var speed = (60 - this.half_size) / 20;
+        this.r += speed * 0.002;
+        this.x += speed;
+        this.y += speed;
+      };
+      this.draw = function () {
+        var dots = this.getDots();
+        ctx.beginPath();
+        ctx.moveTo(dots.p1.x, dots.p1.y);
+        ctx.lineTo(dots.p2.x, dots.p2.y);
+        ctx.lineTo(dots.p3.x, dots.p3.y);
+        ctx.lineTo(dots.p4.x, dots.p4.y);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+
+        if (this.y - this.half_size > c.height) {
+          this.y -= c.height + 100;
+        }
+        if (this.x - this.half_size > c.width) {
+          this.x -= c.width + 100;
+        }
+      };
+      this.drawShadow = function () {
+        var dots = this.getDots();
+        var angles = [];
+        var points = [];
+
+        for (dot in dots) {
+          var angle = Math.atan2(light.y - dots[dot].y, light.x - dots[dot].x);
+          var endX =
+            dots[dot].x + this.shadow_length * Math.sin(-angle - Math.PI / 2);
+          var endY =
+            dots[dot].y + this.shadow_length * Math.cos(-angle - Math.PI / 2);
+          angles.push(angle);
+          points.push({
+            endX: endX,
+            endY: endY,
+            startX: dots[dot].x,
+            startY: dots[dot].y,
+          });
+        }
+
+        for (var i = points.length - 1; i >= 0; i--) {
+          var n = i == 3 ? 0 : i + 1;
+          ctx.beginPath();
+          ctx.moveTo(points[i].startX, points[i].startY);
+          ctx.lineTo(points[n].startX, points[n].startY);
+          ctx.lineTo(points[n].endX, points[n].endY);
+          ctx.lineTo(points[i].endX, points[i].endY);
+          ctx.fillStyle = '#2c343f';
+          ctx.fill();
+        }
+      };
+    }
+
+    var boxes = [];
+
+    function draw() {
+      ctx.clearRect(0, 0, c.width, c.height);
+      drawLight();
+
+      for (var i = 0; i < boxes.length; i++) {
+        boxes[i].rotate();
+        boxes[i].drawShadow();
+      }
+      for (var i = 0; i < boxes.length; i++) {
+        collisionDetection(i);
+        boxes[i].draw();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    draw();
+
+    while (boxes.length < 14) {
+      boxes.push(new Box());
+    }
+
+    window.onresize = resize;
+    c.onmousemove = function (e) {
+      light.x = e.offsetX == undefined ? e.layerX : e.offsetX;
+      light.y = e.offsetY == undefined ? e.layerY : e.offsetY;
+    };
+
+    function collisionDetection(b) {
+      for (var i = boxes.length - 1; i >= 0; i--) {
+        if (i != b) {
+          var dx =
+            boxes[b].x + boxes[b].half_size - (boxes[i].x + boxes[i].half_size);
+          var dy =
+            boxes[b].y + boxes[b].half_size - (boxes[i].y + boxes[i].half_size);
+          var d = Math.sqrt(dx * dx + dy * dy);
+          if (d < boxes[b].half_size + boxes[i].half_size) {
+            boxes[b].half_size =
+              boxes[b].half_size > 1 ? (boxes[b].half_size -= 1) : 1;
+            boxes[i].half_size =
+              boxes[i].half_size > 1 ? (boxes[i].half_size -= 1) : 1;
+          }
+        }
+      }
+    }
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides((slideIndex += n));
+    }
+
+    function currentSlide(n) {
+      showSlides((slideIndex = n));
+    }
+
+    function showSlides(n) {
+      let i;
+      let slides = document.getElementsByClassName('mySlides');
+
+      if (n > slides.length) {
+        slideIndex = 1;
+      }
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = 'none';
+      }
+
+      slides[slideIndex - 1].style.display = 'block';
+    }
+  </script>
+</html>
