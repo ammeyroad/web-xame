@@ -1,181 +1,112 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
-  <head>
-    <title>Suwit</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@2.38.0/dist/full.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap"
-      rel="stylesheet"
-    />
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css"
+rel="stylesheet"
+type="text/css"
+/>
+<style>
+body {font-family: Arial;}
 
-    <style></style>
-  </head>
-  <body>
-    <div class="rounded border mx-auto mt-4">
-      <!-- Tabs -->
-      <ul id="tabs" class="inline-flex pt-2 px-1 w-full border-b">
-        <li
-          class="
-            bg-white
-            px-4
-            text-gray-800
-            font-semibold
-            py-2
-            rounded-t
-            border-t border-r border-l
-            -mb-px
-          "
-        >
-          <a id="default-tab" href="#first">Tab 1</a>
-        </li>
-        <li class="px-4 text-gray-800 font-semibold py-2 rounded-t">
-          <a href="#second">Tab 2</a>
-        </li>
-        <li class="px-4 text-gray-800 font-semibold py-2 rounded-t">
-          <a href="#third">Tab 3</a>
-        </li>
-        <li class="px-4 text-gray-800 font-semibold py-2 rounded-t">
-          <a href="#fourth">Tab 4</a>
-        </li>
-      </ul>
+/* Style the tabuzz */
+.tabuzz {
+  overflow: hidden;
+  border: 0px solid #ccc;
+ 
+}
 
-      <!-- Tab Contents -->
-      <div id="tab-contents">
-        <div id="first" class="p-4">First tab</div>
-        <div id="second" class="hidden p-4">Second tab</div>
-        <div id="third" class="hidden p-4">Third tab</div>
-        <div id="fourth" class="hidden p-4">Fourth tab</div>
-      </div>
+/* Style the buttons inside the tabuzz */
+.tabuzz button {
+  background-color: Blue;
+  float: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tabuzz button:hover {
+  background-color: red;
+  color: blue;
+}
+
+/* Create an active/current tabuzzlink class */
+.tabuzz button.active {
+  background-color: #ccc;
+  color: blue;
+}
+
+/* Style the tabuzz content */
+.tabuzzcontent {
+  display: none;
+}
+</style>
+</head>
+<body class="bg-gray-900">
+<section class="bg-gray-900">
+<div class="max-w-screen-xl mx-auto sm:px-24 px-6 py-12 space-y-4">
+  <div
+    class=" bg-[url('/img/777/BG-1.jpg')]  bg-yellow-500 sm:bg-cover bg-contain bg-center rounded-xl bg-blend-overlay text-left  text-black sm:h-[250px] h-[200px] grid sm:grid-cols-6 place-content-center items-center sm:pl-8 pl-2">
+    <div class="col-span-4">
+      <p class="text-4xl text-left font-black ">VIP Member</p>
+      <p class="text-md text-left font-medium ">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      </p>
+      <button class="btn-pink mt-5">learn more</button>
     </div>
-
-    https://play.tailwindcss.com/TdrkYtXwWu?layout=horizontal
-    <div class="p-5">
-      <div
-        class="
-          relative
-          mx-auto
-          h-96
-          max-w-screen-lg
-          items-center
-          justify-between
-          bg-slate-600/100
-          overflow-hidden
-        "
-      >
-        <div class="relative w-full">
-          <div class="absolute w-full">
-            <img
-              class="h-96 w-full bg-red-800/20 object-cover"
-              src="http://www.ammeyroad.site/assets/ele-2.06fa2f78.png"
-              alt="POW Ship"
-            />
-          </div>
-          <div class="absolute w-full">
-            <img
-              class="h-96 w-full bg-slate-800/20 object-contain object-center"
-              src="http://www.ammeyroad.site/assets/h-slide-2.c7e1842a.png"
-              alt="POW Ship"
-            />
-          </div>
-        </div>
-        <div class="absolute w-full bg-slate-90x0 p-4 mt-24">
-          <p
-            class="
-              bg-base-300
-              textarea-secondary
-              mx-auto
-              w-max
-              rounded-t-xl
-              px-8
-              pt-2
-              uppercase
-            "
-          >
-            Lottery Jackpot
-          </p>
-          <div
-            class="
-              bg-base-200
-              border-base-300
-              mx-auto
-              w-max
-              rounded-xl
-              border-8
-              px-8
-              py-4
-            "
-          >
-            <p class="text-2xl font-black uppercase text-white sm:text-4xl">
-              $ 213.322
-            </p>
-            <progress
-              class="progress progress-secondary w-56 bg-white"
-              value="60"
-              max="100"
-            ></progress>
-          </div>
-          <button
-            class="btn btn-warning mt-3 opacity-0 group-hover:opacity-100"
-          >
-            Buy Coupon
-          </button>
-        </div>
-      </div>
+    <div class=" sm:block col-span-2">
+      <img src="/img//777/sliderb.png" class="object-cover sm:h-[400px]" alt="">
     </div>
-  </body>
+  </div>
+</div>
+</section>
+<p>In this example, we use JavaScript to "click" on the London button, to open the tabuzz on page load.</p>
 
-  <script>
-    let tabsContainer = document.querySelector('#tabs');
+<div class="tabuzz space-x-2">
+  <button class="tabuzzlinks px-4 py-2 rounded-t-xl w-24" onclick="openCity(event, 'London')" id="defaultOpen">London</button>
+  <button class="tabuzzlinks px-4 py-2 rounded-t-xl w-24" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tabuzzlinks px-4 py-2 rounded-t-xl w-24" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+  <button class="tabuzzlinks px-4 py-2 rounded-t-xl w-24" onclick="openCity(event, 'jkt')">jkt</button>
+</div>
 
-    let tabTogglers = tabsContainer.querySelectorAll('#tabs a');
+<div id="London" class="tabuzzcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
 
-    console.log(tabTogglers);
+<div id="Paris" class="tabuzzcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p> 
+</div>
 
-    tabTogglers.forEach(function (toggler) {
-      toggler.addEventListener('click', function (e) {
-        e.preventDefault();
+<div id="Tokyo" class="tabuzzcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+<div id="jkt" class="tabuzzcontent">
+<h3>dsadjkt</h3>
+<p>Tokyo is the capital of Japan.</p>
+</div>
 
-        let tabName = this.getAttribute('href');
+<script>
+function openCity(evt, cityName) {
+  var i, tabuzzcontent, tabuzzlinks;
+  tabuzzcontent = document.getElementsByClassName("tabuzzcontent");
+  for (i = 0; i < tabuzzcontent.length; i++) {
+    tabuzzcontent[i].style.display = "none";
+  }
+  tabuzzlinks = document.getElementsByClassName("tabuzzlinks");
+  for (i = 0; i < tabuzzlinks.length; i++) {
+    tabuzzlinks[i].className = tabuzzlinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
 
-        let tabContents = document.querySelector('#tab-contents');
-
-        for (let i = 0; i < tabContents.children.length; i++) {
-          tabTogglers[i].parentElement.classList.remove(
-            'border-t',
-            'border-r',
-            'border-l',
-            '-mb-px',
-            'bg-white'
-          );
-          tabContents.children[i].classList.remove('hidden');
-          if ('#' + tabContents.children[i].id === tabName) {
-            continue;
-          }
-          tabContents.children[i].classList.add('hidden');
-        }
-        e.target.parentElement.classList.add(
-          'border-t',
-          'border-r',
-          'border-l',
-          '-mb-px',
-          'bg-white'
-        );
-      });
-    });
-  </script>
-</html>
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 
